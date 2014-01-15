@@ -3,6 +3,7 @@
 #include<sys/time.h>
 #include<ctime>
 #include<string.h>
+#include<cstdlib>
 
 #define N   256
 #define M   100000
@@ -21,13 +22,13 @@ class Random {
     struct  timeval now;
 
   public:
-          Random(void);
-          Random(float);
-    int   GenerateInt(void);
-    int   GenerateInt(int,int);
-    float GenerateFloat(void);
+            Random(void);
+            Random(float);
+    int     GenerateInt(void);
+    int     GenerateInt(int,int);
+    float   GenerateFloat(void);
     string  GenerateText(int);
-    float test(void);
+    float   test(void);
 };
 
 Random::Random(void) {
@@ -48,26 +49,35 @@ int Random::GenerateInt(int i, int r) {
     case 1  :   numI *= 677;
                 numI *= i;
       break;
+
     case 2  :   numI *= 347;
                 numI *= i;
       break;
+
     case 3  :   numI *= 331;
                 numI *= i;
       break;
+
     case 4  :   numI *= 881;
                 numI *= i;
       break;
+
     case 5  :   numI = numI * 983;
       break;
+
     case 6  :   numI = numI * 229;
       break;
+
     case 7  :   numI = seed * 709;
       break;
+
     case 8  :   numI = seed * 103;
       break;
+
     case 9  :   numI = numI * seed + 2013;
                 numI *= i;
       break;
+
     default :   numI = numI * seed + 17097;
                 numI *= i;
   }
@@ -86,26 +96,35 @@ int Random::GenerateInt() {
     case 1  :   numI *= 677;
                 numI *= seed;
       break;
+
     case 2  :   numI *= 331;
                 numI *= seed;
       break;
+
     case 3  :   numI *= 347;
                 numI *= seed;
       break;
+
     case 4  :   numI *= 881;
                 numI *= seed;
       break;
+
     case 5  :   numI *= 983;
       break;
+
     case 6  :   numI *= 709;
       break;
+
     case 7  :   numI = seed * 103;
       break;
+
     case 8  :   numI = seed * 229;
       break;
+
     case 9  :   numI = numI * seed + 2569;
                 numI *= seed;
       break;
+
     default :   numI = numI * seed + 1907;
                 numI *= seed;
   }
@@ -123,22 +142,31 @@ float Random::GenerateFloat() {
   switch(seed) {
     case 1:     numF += 709 / Pi;
       break;
+
     case 2:     numF += 669;
       break;
+
     case 3:     numF *= 841 / (seed * 100);
       break;
+
     case 4:     numF *= 192;
       break;
+
     case 5:     numF *= 991 / (seed * now.tv_sec);
       break;
+
     case 6:     numF *= 347;
       break;
+
     case 7:     numF *= 331 / now.tv_usec;
       break;
+
     case 8:     numF += 661;
       break;
+
     case 9:     numF *= 541 / Pi;
       break;
+
     default:    numF /= (seed * (now.tv_usec % 1000));
   }
 
@@ -147,25 +175,54 @@ float Random::GenerateFloat() {
 
 string Random::GenerateText(int length) {
 
-  //text.assign("it works");
   gettimeofday(&now, NULL);
   static const char txt[] =  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   for(int i = 0; i < length; i++) {
-    text[i] = txt[now.tv_usec % (sizeof(txt) - 1)];
+    text[i] = txt[(now.tv_usec * rand()) % (sizeof(txt) - 1)];
   }
-  string n(text);
-  return n;
+
+  return string(text);
 }
-float Random::test(void) {
-  gettimeofday(&now, NULL);
-  cout<<"Sec: "<<now.tv_sec<<"\t"<<"microsec: "<<now.tv_usec<<"\n";
-}
+
 int main() {
 
-  Random *r = new Random();int i=10;
+  Random *r = new Random();
+
+  cout<<"Random integers\n";
+  cout<<"--------------------------\n";
+
+  int i = 9;
   while(i) {
-    cout<<r->GenerateText(10)<<"\n";
+    cout<<"\t"<<r->GenerateInt()<<"\n";
     i--;
   }
+
+  cout<<"Random integers between 0-20\n";
+  cout<<"--------------------------\n";
+
+  i = 9;
+  while(i) {
+    cout<<"\t"<<r->GenerateInt(2, 20)<<"\n";
+    i--;
+  }
+
+  cout<<"Random floating point values\n";
+  cout<<"--------------------------\n";
+
+  i = 9;
+  while(i) {
+    cout<<"\t"<<r->GenerateFloat()<<"\n";
+    i--;
+  }
+
+  cout<<"Random text of length 20\n";
+  cout<<"--------------------------\n";
+
+  i = 9;
+  while(i) {
+    cout<<"\t"<<r->GenerateText(20)<<"\n";
+    i--;
+  }
+
 }

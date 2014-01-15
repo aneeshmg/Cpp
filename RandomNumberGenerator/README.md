@@ -12,3 +12,7 @@ Generates/returns a random using 'i' as a seed and in the range (0-r)
 
 * float GenerateFloat()
 Generates/returns a random float value without range
+Note: GenerateFloat has erratic behaviour.
+
+* string GenerateText(int i)
+Generates/returns a random string of length i

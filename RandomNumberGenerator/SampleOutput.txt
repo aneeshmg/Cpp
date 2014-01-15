@@ -1,0 +1,45 @@
+Random integers
+--------------------------
+	237348
+	0
+	721
+	224124
+	150936
+	41589
+	161652
+	237348
+	0
+Random integers between 0-20
+--------------------------
+	12
+	12
+	4
+	2
+	10
+	2
+	14
+	10
+	14
+Random floating point values
+--------------------------
+	9
+	3123
+	678
+	18
+	18
+	678
+	678
+	678
+	234.682
+Random text of length 20
+--------------------------
+	AQQIQEOMo0oMAGkUmQcI
+	nElrcSeXV7VeIqV1DyFs
+	xfPtUN6WxkdSfQCf24CR
+	htq36l6zLV8zoxkJWCf0
+	KOowuUAGU4usgykwY6Q6
+	IQWquOOWkWGmgGSmeww0
+	O3BFDpdTLLBEDfshw9pE
+	AtSz758myj0PQBQDOtnN
+	FEOeVW9w4CMGL4bTVj7Y
+
