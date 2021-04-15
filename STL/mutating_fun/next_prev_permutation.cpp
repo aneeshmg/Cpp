@@ -17,6 +17,7 @@ int main() {
 
     print(v);
 
+    // needs bidirectional iterators
     next_permutation(v.begin(), v.end());
     print(v); // 1 2 3 4 6 5
 
@@ -24,5 +25,6 @@ int main() {
     next_permutation(v.begin(), v.end());
     print(v); // 1 2 3 4 5 6
 
-
+    prev_permutation(v.begin(), v.end());
+    print(v); // 6, 5, 4, 3, 2, 1
 }
