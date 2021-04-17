@@ -15,4 +15,6 @@ int main() {
 
     cout << i << endl;
     cout << (i & (i - 1)) << endl;
+
+    cout << 1L << endl;
 }
