@@ -23,5 +23,12 @@ int main() {
     vector<int> t = {1, 2, 3, 4, 5};
 
     copy(t.cbegin(), t.cend() - 1, ostream_iterator<int>(cout, ", ")); // this will only print till N-1 items
-    cout << t.back(); // hence this, as used in 5.5
+    cout << t.back() << endl; // hence this, as used in 5.5
+
+    unsigned int k = 1;
+    while (k) {
+        k <<= 1;
+        cout << k << " "; // assumed this would result in infinite loop but it terminates at the 32nd iteration (hits 0)
+    }
+    cout << endl;
 }
