@@ -17,4 +17,6 @@ int main() {
     // basically to fill in array increments of 1
     iota(t.begin(), t.end(), 5);
     print(t); // 5, 6, 7, 8, 9
+
+    t
 }
