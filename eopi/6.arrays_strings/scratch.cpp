@@ -18,5 +18,4 @@ int main() {
     iota(t.begin(), t.end(), 5);
     print(t); // 5, 6, 7, 8, 9
 
-    t
 }
