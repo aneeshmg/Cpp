@@ -1,4 +1,4 @@
-// given a list and a node, delete the node from the list
+// clone list with random/jump pointer
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -9,7 +9,7 @@ template <typename T>
 class node_t {
     public:
         T data;
-        shared_ptr<node_t<T>> next;
+        shared_ptr<node_t<T>> next, jump;
 };
 
 template <typename T>
@@ -37,8 +37,43 @@ void append_node(shared_ptr<node_t<T>> &head, shared_ptr<node_t<T>> &tail, share
 }
 
 template <typename T>
-shared_ptr<node_t<T>> zip_list(const shared_ptr<node_t<T>> &L) {
-    
+void connect_via_jump(shared_ptr<node_t<T>> &a, const shared_ptr<node_t<T>> &b) {
+    a->jump = b;
+}
+
+template <typename T>
+shared_ptr<node_t<T>> copy_postings_list(const shared_ptr<node_t<T>> &L) {
+    // return empty list if L is nullptr
+    if (!L) return nullptr;
+
+    // this is not the only way to do this
+    // stage 1: copy nodes from L
+    shared_ptr<node_t<T>> p = L;
+    while (p) {
+        auto temp = shared_ptr<node_t<T>>(new node_t<T>{p->data, p->next, nullptr});
+        p->next = temp;
+        p = temp->next;
+    }
+
+    // 2nd stage: update the jump fields
+    p = L;
+    while (p) {
+        if (p->jump) {
+            p->next->jump = p->jump->next;
+        }
+        p = p->next->next;
+    }
+
+    // stage3: update the next field
+    p = L;
+    shared_ptr<node_t<T>> copied = p->next;
+    while (p->next) {
+        shared_ptr<node_t<T>> temp = p->next;
+        p->next = temp->next;
+        p = temp;
+    }
+
+    return copied;
 }
 
 
@@ -52,12 +87,7 @@ int main() {
         append_node(f, tf, n);
     }
 
-    auto v = f->next->next->next->next;
-
-    print(f);
-
-    cout << v->data << endl;
-    f = delete_node(f, v);
+    // test in rev
 
     print(f);
 
