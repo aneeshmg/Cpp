@@ -37,6 +37,7 @@ vector<T> merge_arrays(const vector<vector<T>> &S) {
         min_heap.pop();
     }
 
+    return ret;
 }
 
 int main() {
