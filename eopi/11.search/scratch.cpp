@@ -20,4 +20,6 @@ int main() {
 
     print(t);
     print(prefix_sum);
+
+    cout << minmax(4, 2).first << endl;
 }
