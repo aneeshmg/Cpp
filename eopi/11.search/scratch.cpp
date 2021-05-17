@@ -28,4 +28,7 @@ int main() {
     uniform_int_distribution<int> dis(t[0], t[t.size() - 1]);
 
     cout << dis(gen) << endl;
+
+    int i = 3;
+    cout << ~(i);
 }
